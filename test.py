@@ -1,3 +1,8 @@
+'''
+Copyright (c) 2020 NVIDIA
+Author: Wentao Yuan
+'''
+
 import argparse
 import numpy as np
 import os

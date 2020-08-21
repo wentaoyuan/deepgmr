@@ -1,9 +1,19 @@
 ## DeepGMR: Learning Latent Gaussian Mixture Models for Registration
-#### [[paper]]() [[data]](https://drive.google.com/drive/folders/1Wb0gQf-9_9zmUawxl3cGwG9rDSjTDojK) [[website]](https://wentaoyuan.github.io/deepgmr)
+#### [[paper]](https://arxiv.org/abs/2008.09088) [[data]](https://drive.google.com/drive/folders/1Wb0gQf-9_9zmUawxl3cGwG9rDSjTDojK) [[website]](https://wentaoyuan.github.io/deepgmr)
 ![teaser](figures/teaser.png)
 
 ### Introduction
-Deep Gaussian Mixture Registration (DeepGMR) is a learning-based probabilistic point cloud registration algorithm which achieves fast and accurate global regitration. This repository contains a basic PyTorch implementation of DeepGMR. Please refer to our [project website](https://wentaoyuan.github.io/deepgmr) or our [publication at ECCV 2020]() for more details.
+Deep Gaussian Mixture Registration (DeepGMR) is a learning-based probabilistic point cloud registration algorithm which achieves fast and accurate global regitration. This repository contains a basic PyTorch implementation of DeepGMR. Please refer to our [project website](https://wentaoyuan.github.io/deepgmr) or our [publication at ECCV 2020](https://arxiv.org/abs/2008.09088) for more details.
+
+If you find our work useful, please consider citing our paper:
+```
+@article{yuan2020deepgmr,
+  title   = {DeepGMR: Learning Latent Gaussian Mixture Models for Registration},
+  author  = {Yuan, Wentao and Eckart, Benjamin and Kim, Kihwan and Jampani, Varun and Fox, Dieter and Kautz, Jan},
+  journal = {arXiv preprint arXiv:2008.09088},
+  year    = {2020}
+}
+```
 
 ### Usage
 #### Prerequisite

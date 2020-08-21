@@ -1,3 +1,8 @@
+'''
+Copyright (c) 2020 NVIDIA
+Author: Wentao Yuan
+'''
+
 import numpy as np
 from matplotlib import cm
 from matplotlib import pyplot as plt

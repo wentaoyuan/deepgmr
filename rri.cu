@@ -1,3 +1,6 @@
+// Copyright (c) 2020 NVIDIA
+// Author: Ben Eckart
+
 #define idx(i,j,lda) ( (j) + ((i)*(lda)) )
 
 #define K %d

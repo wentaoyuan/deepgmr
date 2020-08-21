@@ -1,3 +1,8 @@
+'''
+Copyright (c) 2020 NVIDIA
+Author: Wentao Yuan
+'''
+
 import math
 import torch
 import torch.nn as nn

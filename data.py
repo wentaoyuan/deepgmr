@@ -148,27 +148,3 @@ class TrainData(Dataset):
     def __len__(self):
         return self.points.shape[0]
 
-
-if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser()
-    parser.add_argument('data')
-    parser.add_argument('--max_angle', type=int, default=180)
-    parser.add_argument('--max_trans', type=int, default=0.5)
-    parser.add_argument('--n_points', type=int, default=5000)
-    parser.add_argument('--clean', action='store_true')
-    parser.add_argument('--use_rri', action='store_true')
-    args = parser.parse_args()
-
-    data = TrainData(args.data, args)
-    f = h5py.File('data/test/icl-nuim.h5', 'w')
-    source_dset = f.create_dataset('source', (len(data), args.n_points, 3), dtype='f')
-    target_dset = f.create_dataset('target', (len(data), args.n_points, 3), dtype='f')
-    trans_dset = f.create_dataset('transform', (len(data), 4, 4), dtype='f')
-    label_dset = f.create_dataset('label', (len(data),), dtype='i')
-    for i, (source, target, transform) in enumerate(data):
-        source_dset[i, ...] = source
-        target_dset[i, ...] = target
-        trans_dset[i, ...] = transform
-        label_dset[i] = f['label'][i]
-    f.close()

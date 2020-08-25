@@ -133,7 +133,7 @@ class TrainData(Dataset):
         pcd1 = self.points[index][:self.n_points]
         pcd2 = self.points[index][:self.n_points]
         transform = random_pose(self.max_angle, self.max_trans / 2)
-        pose1 = random_pose(np.pi, self.max_trans / 2)
+        pose1 = random_pose(np.pi, self.max_trans)
         pose2 = transform @ pose1
         pcd1 = pcd1 @ pose1[:3, :3].T + pose1[:3, 3]
         pcd2 = pcd2 @ pose2[:3, :3].T + pose2[:3, 3]

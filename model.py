@@ -182,8 +182,8 @@ class DeepGMR(nn.Module):
         self.mse2 = F.mse_loss(self.T_21 @ T_gt, eye)
         loss = self.mse1 + self.mse2
 
-        self.r_err = rotation_error(self.T_12[:3, :3], T_gt[:3, :3])
-        self.t_err = translation_error(self.T_12[:3, 3], T_gt[:3, 3])
+        self.r_err = rotation_error(self.T_12[:, :3, :3], T_gt[:, :3, :3])
+        self.t_err = translation_error(self.T_12[:, :3, 3], T_gt[:, :3, 3])
         self.rmse = rmse(self.pts1[:, :100], self.T_12, T_gt)
 
         return loss, self.r_err, self.t_err, self.rmse

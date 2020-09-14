@@ -15,17 +15,18 @@ from data import TestData
 from model import DeepGMR
 
 
-def evaluate(model, loader, save_results=False, results_dir=None):
+def evaluate(model, loader, rmse_thresh, save_results=False, results_dir=None):
     model.eval()
 
     log_fmt = 'Test: inference time {:.3f}, preprocessing time {:.3f}, loss {:.4f}, ' + \
-              'rotation error {:.2f}, translation error {:.4f}, RMSE {:.4f}'
+              'rotation error {:.2f}, translation error {:.4f}, RMSE {:.4f}, Recall {:.3f}'
     inference_time = 0
     preprocess_time = 0
     losses = 0
     r_errs = 0
     t_errs = 0
     rmses = 0
+    n_correct = 0
     N = 0
 
     if save_results:
@@ -49,9 +50,10 @@ def evaluate(model, loader, save_results=False, results_dir=None):
             inference_time += time() - start
 
         losses += loss.item()
-        r_errs += r_err.mean().item()
-        t_errs += t_err.mean().item()
-        rmses += rmse.mean().item()
+        r_errs += r_err.sum().item()
+        t_errs += t_err.sum().item()
+        rmses += rmse.sum().item()
+        n_correct += (rmse < rmse_thresh).sum().item()
 
         if save_results:
             rotations.append(model.T_12[:, :3, :3].cpu().numpy())
@@ -62,8 +64,8 @@ def evaluate(model, loader, save_results=False, results_dir=None):
         start = time()
 
     log_str = log_fmt.format(
-        inference_time / N, preprocess_time / N,
-        losses / N, r_errs / N, t_errs / N, rmses / N
+        inference_time / N, preprocess_time / N, losses / len(loader),
+        r_errs / N, t_errs / N, rmses / N, n_correct / N
     )
     print(log_str)
 
@@ -82,6 +84,7 @@ if __name__ == "__main__":
     parser.add_argument('--results_dir')
     parser.add_argument('--checkpoint')
     parser.add_argument('--save_results', action='store_true')
+    parser.add_argument('--rmse_thresh', type=int, default=0.2)
     # dataset
     parser.add_argument('--n_points', type=int, default=1024)
     parser.add_argument('--batch_size', type=int, default=32)
@@ -101,4 +104,4 @@ if __name__ == "__main__":
     test_loader = DataLoader(test_data, args.batch_size)
 
     model.load_state_dict(torch.load(args.checkpoint))
-    evaluate(model, test_loader, args.save_results, args.results_dir)
+    evaluate(model, test_loader, args.rmse_thresh, args.save_results, args.results_dir)

@@ -7,11 +7,13 @@ Deep Gaussian Mixture Registration (DeepGMR) is a learning-based probabilistic p
 
 If you find our work useful, please consider citing our paper:
 ```
-@article{yuan2020deepgmr,
-  title   = {DeepGMR: Learning Latent Gaussian Mixture Models for Registration},
-  author  = {Yuan, Wentao and Eckart, Benjamin and Kim, Kihwan and Jampani, Varun and Fox, Dieter and Kautz, Jan},
-  journal = {arXiv preprint arXiv:2008.09088},
-  year    = {2020}
+@inproceedings{yuan2020deepgmr,
+  title        = {DeepGMR: Learning Latent Gaussian Mixture Models for Registration},
+  author       = {Yuan, Wentao and Eckart, Benjamin and Kim, Kihwan and Jampani, Varun and Fox, Dieter and Kautz, Jan},
+  booktitle    = {European Conference on Computer Vision},
+  pages        = {733--750},
+  year         = {2020},
+  organization = {Springer}
 }
 ```
 

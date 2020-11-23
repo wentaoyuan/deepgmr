@@ -165,8 +165,8 @@ class DeepGMR(nn.Module):
         else:
             self.pts1 = pts1
             self.pts2 = pts2
-            feats1 = (pts1 - pts1.mean(dim=2, keepdim=True)).transpose(1, 2)
-            feats2 = (pts2 - pts2.mean(dim=2, keepdim=True)).transpose(1, 2)
+            feats1 = (pts1 - pts1.mean(dim=1, keepdim=True)).transpose(1, 2)
+            feats2 = (pts2 - pts2.mean(dim=1, keepdim=True)).transpose(1, 2)
 
         self.gamma1 = F.softmax(self.backbone(feats1), dim=2)
         self.pi1, self.mu1, self.sigma1 = gmm_params(self.gamma1, self.pts1)
